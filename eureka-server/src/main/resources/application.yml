@@ -1,6 +1,6 @@
 server:
-  port: 8081
-#  address: 192.168.0.100
+  port: 8716
+  #address: 192.168.0.102
 
 spring:
   application:
@@ -8,8 +8,13 @@ spring:
     name: my-eureka-service
 
 eureka:
+  #此处设置会改变eureka控制台的显示
+  datacenter: cloud
+  #此处设置会改变eureka控制台的显示
+  environment: prod
+
   instance:
-    hostname: eureka-server-node
+    hostname: localhost
     #hostname: 192.168.0.100
     appname: yichuan-eureka-server # name
     Connection: Keep-Alive
@@ -19,11 +24,14 @@ eureka:
   server:
     enable-self-preservation: false #设为false，关闭自我保护
     eviction-interval-timer-in-ms: 5000 # 清理间隔（单位毫秒，默认是60*1000）
-    renewalPercentThreshold: 0.85 # 默认85%
 
   client: #not a client,don't register with yourself
     registerWithEureka: false # false表示自己不需要向注册中心注册自己
     fetchRegistry: false # false表示自己就是注册中心。我的职责就是维护服务实例，并不需要去检索服务
     serviceUrl:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka  #设置与Eureka Server交行的地址查询服务和注册服务
-#spring:
+
+security:
+  basic:
+    #关闭安全验证
+    enabled: false

@@ -14,8 +14,8 @@ import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
  */
 @SpringBootApplication
 @EnableAdminServer
-@EnableEurekaClient
 @EnableDiscoveryClient
+@EnableEurekaClient //本服务启动后，会自动注册到 Eureka 服务中
 public class AdminServerApplication {
     //http://localhost:8090/#/applications
     public static void main(String[] args) {
